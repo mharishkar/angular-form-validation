@@ -3,6 +3,8 @@
       <div class="form-group">
         <label for="first_name">User Name<b>*</b></label>
         <input type="text" id="first_name" formControlName="user_name" >
+        <app-error-block [formName]="validationForm" [errorMessage]="this field">
+        </app-error-block>
       </div>
       <div class="form-group">
         <label for="email">Email<b>*</b></label>

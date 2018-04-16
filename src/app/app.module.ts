@@ -4,10 +4,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { ErrorBlockComponent } from './error-block/error-block.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ErrorBlockComponent
   ],
   imports: [
     BrowserModule,
