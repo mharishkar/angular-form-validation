@@ -1,3 +1,35 @@
-<h1>
-  {{title}}
-</h1>
+<section class="form-section">
+    <form [formGroup]="validationForm" novalidate>
+      <div class="form-group">
+        <label for="first_name">User Name<b>*</b></label>
+        <input type="text" id="first_name" formControlName="user_name" >
+      </div>
+      <div class="form-group">
+        <label for="email">Email<b>*</b></label>
+        <input type="text" id="email" formControlName="email" >
+      </div>
+      <div class="form-group">
+        <label for="date_of_birth">Date Of Birth<b>*</b></label>
+        <input type="date" id="date_of_birth" formControlName="date_of_birth" >
+      </div>
+      <div class="form-group">
+        <label for="mobile">Mobile<b>*</b></label>
+        <input type="tel" id="mobile" formControlName="mobile">
+      </div>
+      
+      <div formArrayName="addressArray">
+        <div *ngFor="let address of validationForm.get('addressArray').controls; let i = index; let first = first;">
+            <div class="form-group" [formGroupName]="i">
+                <div class="delete-btn" (click)="removeItem(i)" >X</div>
+                <label for="address">Address <small *ngIf="!first">{{i}}</small> <b>*</b></label>
+                <textarea type="tel" id="address" formControlName="address"></textarea>
+              </div>
+        </div>
+      </div>
+      <div class="add-more-btn" (click)="addItem()" >+ Add Address</div>
+      <div>
+        <button class="btn submit-btn" type="submit">Submit</button>
+        <button class="btn cancel-btn" type="reset">Cancel</button>
+      </div>
+    </form>
+</section>
