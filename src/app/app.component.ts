@@ -2,7 +2,7 @@ import { ErrorBlockComponent } from './error-block/error-block.component';
 import { Component , OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
-import { FormArray } from '@angular/forms/src/model';
+import { FormArray, AbstractControl } from '@angular/forms/src/model';
 
 @Component({
   selector: 'app-root',
@@ -17,8 +17,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
       this.validationForm = this.fb.group({
-        'user_name': ['', Validators.required],
-        'email': ['', Validators.required],
+        'username': ['',[Validators.required, Validators.maxLength(5)]],
+        'email': ['', [Validators.required, Validators.pattern(/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/)]],
         'date_of_birth': ['', Validators.required],
         'mobile': ['', Validators.required],
         'addressArray': this.fb.array([])
