@@ -14,19 +14,20 @@ export class ErrorBlockComponent {
   @Input() controlName: AbstractControl | AbstractControlDirective
 
   errorMessages = {
-    'required': () => 'field is required',
-    'maxlength': 'length should not exceed',
-    'pattern': "Enter a valid email"
+    'required': () => `This field is required`,
+    'maxlength': (params) => `Maximum ${params.requiredLength} characters are allowed`,
+    'pattern': () => `Enter the valid Email`,
+    'minlength': (params) => `Minimum ${params.requiredLength} characters are required`
+    
   };
 
 
   listOfErrors() { 
-
     if(this.controlName.errors) {
       this.msg = [];
       Object.keys(this.controlName.errors).map( error => {
-        this.controlName.touched ? 
-          this.msg.push(this.errorMessages[error]()) : '';
+        this.controlName.touched || this.controlName.dirty ?
+          this.msg.push(this.errorMessages[error](this.controlName.errors[error])) : '';
       });
       return this.msg;
     }

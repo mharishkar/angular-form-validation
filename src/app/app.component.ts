@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
         'username': ['',[Validators.required, Validators.maxLength(5)]],
         'email': ['', [Validators.required, Validators.pattern(/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/)]],
         'date_of_birth': ['', Validators.required],
-        'mobile': ['', Validators.required],
+        'mobile': ['', [Validators.required, Validators.maxLength(10), Validators.minLength(10)]],
         'addressArray': this.fb.array([])
       });
   }

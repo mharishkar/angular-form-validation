@@ -17,10 +17,16 @@
       <div class="form-group">
         <label for="date_of_birth">Date Of Birth<b>*</b></label>
         <input type="date" id="date_of_birth" formControlName="date_of_birth" >
+        <app-error-block
+          [controlName]="validationForm.controls.date_of_birth">
+        </app-error-block>
       </div>
       <div class="form-group">
         <label for="mobile">Mobile<b>*</b></label>
         <input type="tel" id="mobile" formControlName="mobile">
+        <app-error-block
+          [controlName]="validationForm.controls.mobile">
+        </app-error-block>
       </div>
       
       <div formArrayName="addressArray">
@@ -29,12 +35,15 @@
                 <div class="delete-btn" (click)="removeItem(i)" >X</div>
                 <label for="address">Address <small *ngIf="!first">{{i}}</small> <b>*</b></label>
                 <textarea type="tel" id="address" formControlName="address"></textarea>
+                <app-error-block
+                  [controlName]="validationForm.controls.addressArray.controls[i].get('address')">
+                </app-error-block>
               </div>
         </div>
       </div>
       <div class="add-more-btn" (click)="addItem()" >+ Add Address</div>
       <div>
-        <button class="btn submit-btn" type="submit">Submit</button>
+        <button class="btn submit-btn" [disabled]="validationForm.invalid" type="submit">Submit</button>
         <button class="btn cancel-btn" type="reset">Cancel</button>
       </div>
     </form>
