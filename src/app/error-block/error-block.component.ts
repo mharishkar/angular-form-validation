@@ -17,7 +17,8 @@ export class ErrorBlockComponent {
     'required': () => `This field is required`,
     'maxlength': (params) => `Maximum ${params.requiredLength} characters are allowed`,
     'pattern': () => `Enter the valid Email`,
-    'minlength': (params) => `Minimum ${params.requiredLength} characters are required`
+    'minlength': (params) => `Minimum ${params.requiredLength} characters are required`,
+    'validDob': () => `Age should be greater than 15`
     
   };
 
